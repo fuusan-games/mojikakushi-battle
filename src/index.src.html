@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#7a5af8">
+<title>もじかくしバトル｜ふらっとgames</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🀄</text></svg>">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","Rounded Mplus 1c",system-ui,sans-serif;color:#33284a;background:#f3efff}
+body{background:radial-gradient(circle at 12% 8%,#ffe3f1 0 11%,transparent 12%),radial-gradient(circle at 92% 18%,#dff4ff 0 10%,transparent 11%),radial-gradient(circle at 85% 92%,#fff2c9 0 12%,transparent 13%),#f3efff;background-attachment:fixed}
+.wrap{max-width:520px;margin:0 auto;padding:10px 10px calc(64px + env(safe-area-inset-bottom))}
+h1{font-size:36px;text-align:center;margin:16px 0 2px;line-height:1.15}
+.tl{display:inline-block;width:48px;height:56px;line-height:56px;margin:2px;border-radius:12px;background:#fff;box-shadow:0 4px 0 #cbbcf2;color:#7a5af8;font-size:30px;animation:bob 2.4s ease-in-out infinite}
+.tl.q{background:#7a5af8;color:#fff;box-shadow:0 4px 0 #5638c9}
+.tl:nth-child(2){animation-delay:.2s}.tl:nth-child(3){animation-delay:.4s}.tl:nth-child(4){animation-delay:.6s}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-3deg)}}
+.sub{text-align:center;font-size:13px;color:#7d7096;margin:8px 0 14px}
+.card{background:#fff;border-radius:18px;box-shadow:0 3px 0 #ddd2f7,0 6px 18px rgba(80,50,140,.08);padding:12px;margin:10px 0}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:14px;font:inherit;font-size:17px;font-weight:700;background:#ff8a5c;color:#fff;box-shadow:0 4px 0 #e0683a;margin:8px 0;cursor:pointer}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #e0683a}
+.btn.b2{background:#5fb8ff;box-shadow:0 4px 0 #3290d8}.btn.b3{background:#7cc96c;box-shadow:0 4px 0 #56a447}.btn.g{background:#ebe5f7;color:#5a4a7a;box-shadow:0 4px 0 #cdc2e4}.btn.p{background:#7a5af8;box-shadow:0 4px 0 #5638c9}
+.btn.sm{display:inline-block;width:auto;padding:8px 12px;font-size:14px;margin:4px 2px}
+.btn:disabled{opacity:.45}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
+input[type=text]{font:inherit;font-size:18px;padding:11px;border-radius:12px;border:2px solid #ddd2f7;width:100%;background:#fdfcff}
+select{font:inherit;font-size:14px;padding:7px;border-radius:10px;border:2px solid #ddd2f7;background:#fff}
+.seat{display:flex;gap:6px;align-items:center;padding:6px 0;border-bottom:1px dashed #e7defa}.seat .em{font-size:26px}.seat input{flex:1;padding:8px;font-size:15px}
+.x{border:0;background:#ffe3e3;color:#c55;border-radius:10px;padding:8px 10px;font-weight:700}
+.hide{display:none!important}
+.phase{text-align:center;font-weight:800;font-size:18px;margin:6px 0}
+.topicChip{display:inline-block;background:#7a5af8;color:#fff;border-radius:999px;padding:4px 14px;font-weight:800;font-size:15px}
+.tpGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tpGrid button{border:2px solid #ddd2f7;background:#faf8ff;border-radius:14px;padding:14px 6px;font:inherit;font-weight:800;font-size:16px;color:#4a3a6a}
+.tpGrid button:active{background:#7a5af8;color:#fff}
+.pans{display:flex;gap:3px;justify-content:flex-start;direction:ltr}
+.pan{width:34px;height:40px;border-radius:8px;background:linear-gradient(#9b84ff,#7a5af8);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;box-shadow:0 3px 0 #5638c9;position:relative;flex:none;transition:transform .3s}
+.pan.op{background:#fff7d6;color:#e0582a;box-shadow:0 3px 0 #f0cf7a}
+.pan.mine{background:#efeaff;color:#a99bd0;box-shadow:0 3px 0 #d6cbf5}.pan.mine.op{background:#fff7d6;color:#e0582a;box-shadow:0 3px 0 #f0cf7a}
+.pan.late{background:#fff;color:#7a5af8;box-shadow:0 3px 0 #cbbcf2;outline:2px dashed #b9a8f5}
+.pan.xx{background:#eee;color:#bbb;box-shadow:0 3px 0 #d8d8d8;font-size:16px}
+.pan.flip{animation:flip .6s ease}@keyframes flip{0%{transform:rotateY(0)}50%{transform:rotateY(90deg) scale(1.15)}100%{transform:rotateY(0)}}
+.pan .no{position:absolute;top:-6px;left:-4px;font-size:9px;background:#ffcf5c;color:#7a4a00;border-radius:6px;padding:0 3px}
+.pl{display:flex;align-items:center;gap:6px;padding:6px 6px;border-radius:14px;margin:4px 0;background:#fff;box-shadow:0 2px 0 #e7defa}
+.pl.turn{outline:3px solid #ff8a5c;background:#fff6f0}.pl.dead{opacity:.55;filter:grayscale(.7)}
+.pl .who{width:62px;font-size:12px;text-align:center;line-height:1.15;flex:none;overflow:hidden}.pl .who b{font-size:22px;display:block}
+.pl.shake{animation:shake .5s}@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.bd{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;direction:rtl;margin-top:6px}
+.bd .col{display:grid;grid-template-rows:repeat(5,1fr);gap:3px;direction:ltr}
+.k{border:0;border-radius:9px;background:#fff;box-shadow:0 2px 0 #cdbff0;font:inherit;font-weight:800;font-size:18px;height:38px;color:#4a3a6a;padding:0;position:relative}
+.k.sel{background:#ff8a5c;color:#fff;box-shadow:0 2px 0 #e0683a;transform:scale(1.08)}
+.k.used{background:#ece8f4;color:#bdb4d0;box-shadow:none}.k.used::after{content:"";position:absolute;left:18%;right:18%;top:50%;border-top:2px solid #c05b5b;transform:rotate(-35deg)}
+.k.hit{background:#fff1c2;color:#d06a2a}.k.blank{visibility:hidden}
+.k:disabled{cursor:default}
+.banner{text-align:center;font-weight:800;font-size:17px;padding:8px;border-radius:14px;background:#fff;margin:6px 0;box-shadow:0 2px 0 #e7defa}
+.banner.me{background:#ff8a5c;color:#fff;box-shadow:0 3px 0 #e0683a;animation:pulse 1.4s infinite}@keyframes pulse{50%{transform:scale(1.02)}}
+.log{font-size:13px;color:#6a5b85;max-height:96px;overflow:auto;background:#fff;border-radius:12px;padding:6px 10px;margin-top:8px}
+.pop{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);z-index:80;font-size:34px;font-weight:900;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.25);padding:14px 22px;border-radius:22px;background:#ff8a5c;animation:pop 1.3s ease forwards;white-space:nowrap;pointer-events:none}
+.pop.miss{background:#9a92b0}.pop.boom{background:#e04a6a}.pop.out{background:#33284a}
+@keyframes pop{0%{transform:translate(-50%,-50%) scale(.3);opacity:0}15%{transform:translate(-50%,-50%) scale(1.15);opacity:1}25%{transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-70%) scale(1)}}
+.gate{text-align:center;padding:26px 10px}.gate .em{font-size:64px}
+.modal{position:fixed;inset:0;background:rgba(50,30,90,.4);z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.modal .card{max-width:520px;width:100%;max-height:85vh;overflow:auto;border-radius:20px 20px 0 0;margin:0;font-size:14px;line-height:1.65}
+.fab{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(8px + env(safe-area-inset-bottom));background:#fff;border-radius:20px;padding:8px 16px;color:#5a4a7a;text-decoration:none;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.12);font-size:14px;z-index:30}
+.credit{text-align:center;font-size:12px;color:#9c90b5;margin-top:16px;line-height:1.6}
+.toast{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:#33284a;color:#fff;border-radius:12px;padding:10px 16px;z-index:90;font-size:14px}
+.code{font-size:36px;letter-spacing:6px;text-align:center;font-weight:800;color:#7a5af8}
+#qr{width:150px;margin:6px auto}#qr svg{width:100%;height:auto}
+.conf{position:fixed;top:-20px;font-size:24px;z-index:70;animation:fall 1.8s linear forwards;pointer-events:none}@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+.hint{font-size:12px;color:#8a7ea3}
+.wins{font-size:12px;color:#ff8a5c;font-weight:800}
+</style></head><body>
+<div class="wrap">
+ <section id="sTitle">
+  <h1><span class="tl">も</span><span class="tl q">？</span><span class="tl">か</span><span class="tl q">？</span><br><span style="font-size:30px;color:#7a5af8">もじかくしバトル</span></h1>
+  <div class="sub">お題にそった言葉をこっそりかくして、<br>五十音から1文字ずつ攻撃！ 最後まで残った人の勝ち<br>2〜5人・ふらっとgames</div>
+  <button class="btn" id="goLocal">📱 この端末で遊ぶ（CPU・回しっこ）</button>
+  <button class="btn b2" id="goOnline">🌐 オンラインで遊ぶ（1人1台）</button>
+  <button class="btn g" id="goRules">📖 ルール</button>
+  <div class="credit">ふらっとgames ／ 制作 watg<br>既存の言葉当てゲームの仕組みを参考にしたオリジナル作品です。お題・キャラクター・文章・絵・音はすべてオリジナルです。</div>
+ </section>
+ <section id="sSetup" class="hide">
+  <div class="phase">プレイヤー（2〜5人）</div>
+  <div class="card"><div id="seatList"></div>
+   <div class="row"><button class="btn sm b3" id="addHuman">＋ 人</button><button class="btn sm b2" id="addCpu">＋ CPU</button></div>
+   <div class="hint" style="margin-top:6px">人が2人以上なら1台を回して遊びます（言葉を書くときは、ほかの人は見ないでね）。上から順に攻撃します。</div>
+  </div>
+  <button class="btn" id="startLocal">スタート！</button><button class="btn g" id="backTitle1">もどる</button>
+ </section>
+ <section id="sOnline" class="hide">
+  <div class="phase">オンライン</div>
+  <div class="card"><div style="font-size:13px">なまえ</div><input type="text" id="onName" maxlength="10" placeholder="なまえ">
+   <button class="btn" id="mkRoom">部屋をつくる</button>
+   <div style="font-size:13px;margin-top:8px">部屋コード</div><input type="text" id="onCode" maxlength="6" placeholder="例 AB3K" style="text-transform:uppercase">
+   <button class="btn b2" id="joinRoom">参加する</button></div>
+  <button class="btn g" id="backTitle2">もどる</button>
+ </section>
+ <section id="sLobby" class="hide">
+  <div class="phase">待合室</div>
+  <div class="card"><div style="text-align:center;font-size:13px">部屋コード</div><div class="code" id="lobCode"></div><div id="qr"></div>
+   <button class="btn sm g" id="copyLink" style="display:block;margin:4px auto">🔗 招待リンクをコピー</button></div>
+  <div class="card"><div id="lobList"></div>
+   <div id="lobHost"><button class="btn sm b2" id="lobCpu">＋ CPU</button><button class="btn" id="lobStart">スタート！</button></div>
+   <div id="lobWait" class="hide" style="text-align:center;color:#9c90b5">ホストがスタートするのを待っています…</div></div>
+  <button class="btn g" id="lobLeave">やめる</button>
+ </section>
+ <section id="sGame" class="hide"><div id="gameBody"></div></section>
+</div>
+<div id="rules" class="modal hide"><div class="card">
+ <h3 style="margin-top:0">📖 もじかくしバトルのあそびかた</h3>
+ <p><b>じゅんび</b>：お題を1つ決めます。みんなはお題にそった言葉を1つ、こっそり決めます（<b>2〜7文字</b>）。言葉は7枚のふだに1文字ずつ入り、あまったふだは「×」になります。ほかの人には何文字の言葉かも分かりません。</p>
+ <p><b>書きかた</b>：ひらがなにします。<b>「゛」「゜」はとる</b>（が→か、ぱ→は）。<b>小さい文字は大きく</b>（っ→つ、ゃ→や）。のばす音は<b>「ー」</b>のまま。入力すると自動でなおります。<br>例：「パイナップル」→「はいなつふる」</p>
+ <p><b>攻撃</b>：自分の番になったら、五十音ボードから<b>まだ使われていない文字</b>を1つ選んで攻撃。その文字を持っている人は、<b>その文字のふだを全部</b>みんなに見せます（同じ文字が2枚あれば2枚とも）。</p>
+ <p><b>連続攻撃</b>：だれかのふだが開いたら（自分のふだでも＝<b>自爆</b>）、もう1回だけ攻撃できます。<b>1回の番で攻撃は2回まで</b>。だれのふだも開かなければ、つぎの人の番です。</p>
+ <p><b>脱落と勝ち</b>：×以外のふだが全部開いた人は脱落（もう攻撃できません）。最後まで残った人の勝ち！ 最後に残った人たちが同時に脱落したら、そのとき<b>攻撃した人の勝ち</b>です。</p>
+ <p>相手の言葉が分かっても、口で言わずに1文字ずつ攻撃してね。</p>
+ <p class="hint">CPUについて：CPUは言葉の辞典（お題ごとの言葉）と、開いたふだ・はずれた文字から相手の言葉の候補をしぼりこんで攻撃します。人の言葉の中身は見ていません。</p>
+ <button class="btn" id="rulesClose">とじる</button></div></div>
+<a class="fab" href="https://fuusan-games.github.io/fuusan-games/">🏠 ひろばへ</a>
+<script>/*PEERJS*/</script>
+<script>/*QRCODE*/</script>
+<script>/*TOPICS*/</script>
+<script>/*ENGINE*/</script>
+<script src="../fuusan-games/party.js"></script>
+<script>/*APP*/</script>
+</body></html>
